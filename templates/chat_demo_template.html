@@ -33,6 +33,25 @@
       body {
         background: #dcdde0;
       }
+      .menu {
+        width: 200px;
+        background: #333;
+        color: white;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .menu button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        background: #555;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .menu button:hover {
+        background: #777;
+      }
       .bubble-container {
         height: 100vh;
       }
@@ -47,6 +66,12 @@
   </head>
 
   <body>
+    <!-- Menu on the left side -->
+    <div class="menu">
+      <button id="model1">Model 1</button>
+      <button id="model2">Model 2</button>
+    </div>
+
     <!-- container element for chat window -->
     <div id="chat"></div>
 
