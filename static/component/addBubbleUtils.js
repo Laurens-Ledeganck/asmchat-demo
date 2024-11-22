@@ -3,7 +3,7 @@ import { ensureMarkedLoaded, ensureKaTeXLoaded } from './loadingUtils.js';
 // create a bubble
 let bubbleQueue = false;
 
-const addBubble = (say, posted, container, animTime, tSpeed, widerBy, sidePadding, bubbleWrap, bubbleTyping, interactionsSave, interactionsSaveCommit, interactionsHistory, localStorageAvailable, reply = "", live = true, iceBreaker = false) => {
+const addBubble = (say, posted, container, animTime, tSpeed, widerBy, sidePadding, bubbleWrap, bubbleTyping, interactionsSave, interactionsSaveCommit, interactionsHistory, localStorageAvailable, profilePicUrl, reply = "", live = true, iceBreaker = false) => {
     console.log("addBubble called with say:", say);
     const animationTime = live ? animTime : 0;
     const typeSpeed = live ? tSpeed : 0;
@@ -27,6 +27,14 @@ const addBubble = (say, posted, container, animTime, tSpeed, widerBy, sidePaddin
     });
      
     console.log("Processed say:", say);
+    
+    // Add profile picture if provided
+    if (profilePicUrl) {
+      const profilePic = document.createElement("img");
+      profilePic.src = profilePicUrl;
+      profilePic.className = "profile-pic";
+      bubble.appendChild(profilePic);
+    }
 
     const bubbleContent = document.createElement("span");
     bubble.className = "bubble imagine " + (!live ? " history " : "") + reply;
@@ -62,6 +70,7 @@ const addBubble = (say, posted, container, animTime, tSpeed, widerBy, sidePaddin
       console.log("Setting innerHTML of bubbleContent");
       bubbleContent.innerHTML = parsedContent;
       bubble.appendChild(bubbleContent);
+      bubbleWrap.insertBefore(bubbleTyping, bubbleWrap.lastChild);  // TODO: for the profile pics I think
       bubbleWrap.insertBefore(bubble, bubbleTyping);
 
       // Ensure KaTeX is loaded and then render LaTeX equations

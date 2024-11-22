@@ -36,7 +36,7 @@
       }
       .menu {
         width: 200px;
-        background: #333;
+        background: #dcdde0;
         color: white;
         padding: 20px;
         box-sizing: border-box;
@@ -85,6 +85,17 @@
         flex: 1;
         height: 100vh;
       }
+      .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+      .bubble {
+        display: flex;
+        align-items: center;
+      }
       .bubble-container .input-wrap textarea {
         margin: 0;
         width: calc(100% - 30px);
@@ -100,7 +111,7 @@
     <!-- Menu on the left side -->
     <div class="menu">
       <div class="dropdown">
-        <button id="current-model">Select Model</button>
+        <button id="current-model">Model 1</button>
         <div id="dropdown-content" class="dropdown-content">
           <button onclick="selectModel('Model 1')">Model 1</button>
           <button onclick="selectModel('Model 2')">Model 2</button>
@@ -192,8 +203,14 @@
       });
 
       window.selectModel = function(model) {
+        const dropdownButton = document.getElementById('current-model');
+        const dropdownContent = document.getElementById('dropdown-content');
+        
         dropdownButton.textContent = model;
         dropdownContent.classList.remove('show');
+        
+        // Update the botProfilePic based on the selected model
+        botProfilePic = modelProfilePics[model];
       };
 
     </script>
