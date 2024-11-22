@@ -128,6 +128,25 @@
     </button>
 
     <script type="module">
+
+      const modelProfilePics = {
+        'Model 1': 'static/images/model_1.svg',
+        'Model 2': 'static/images/model_2.svg'
+      };
+      let botProfilePic = modelProfilePics['Model 1']; 
+
+      window.selectModel = function(model) {
+        const dropdownButton = document.getElementById('current-model');
+        const dropdownContent = document.getElementById('dropdown-content');
+        
+        dropdownButton.textContent = model;
+        dropdownContent.classList.remove('show');
+        
+        // Update the botProfilePic based on the selected model
+        botProfilePic = modelProfilePics[model];
+      };
+      
+
       import Bubbles from '../component/Bubbles.js';
       // Dark mode toggle functionality
       const darkModeToggle = document.getElementById('dark-mode-toggle');
@@ -202,23 +221,6 @@
       dropdownButton.addEventListener('click', () => {
         dropdownContent.classList.toggle('show');
       });
-
-      const modelProfilePics = {
-        'Model 1': 'static/images/model_1.svg',
-        'Model 2': 'static/images/model_2.svg'
-      };
-      let botProfilePic = modelProfilePics['Model 1']; 
-
-      window.selectModel = function(model) {
-        const dropdownButton = document.getElementById('current-model');
-        const dropdownContent = document.getElementById('dropdown-content');
-        
-        dropdownButton.textContent = model;
-        dropdownContent.classList.remove('show');
-        
-        // Update the botProfilePic based on the selected model
-        botProfilePic = modelProfilePics[model];
-      };
 
     </script>
   </body>
