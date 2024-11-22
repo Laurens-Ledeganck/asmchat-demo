@@ -12,11 +12,10 @@ export default function Bubbles(container, self, options = {}) {
   const inputCallbackFn = options.inputCallbackFn || false; // should we display an input field?
   const responseCallbackFn = options.responseCallbackFn || false; // is there a callback function for when a user clicks on a bubble button
   
-  const modelProfilePics = {
-    'Model 1': 'static/images/model_1.svg',
-    'Model 2': 'static/images/model_2.svg'
-  };
-  let botProfilePic = modelProfilePics['Model 1']; // the profile picture for the chatbot, default to Model 1
+  // Method to update botProfilePic
+  this.updateBotProfilePic = function(newPic) {
+    botProfilePic = newPic;
+  };  // the profile picture for the chatbot, default to Model 1
   let userProfilePic = null  // no profile picture for you, silly human
 
   let standingAnswer = "ice"; // remember where to restart convo if interrupted
