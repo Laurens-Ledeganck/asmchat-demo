@@ -31,6 +31,7 @@
 
     <style>
       body {
+        display: flex; 
         background: #dcdde0;
       }
       .menu {
@@ -39,20 +40,49 @@
         color: white;
         padding: 20px;
         box-sizing: border-box;
+        position: relative
       }
-      .menu button {
+      .dropdown {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+      }
+      .dropdown button {
         width: 100%;
         padding: 10px;
-        margin: 10px 0;
         background: #555;
         color: white;
         border: none;
         cursor: pointer;
       }
-      .menu button:hover {
+      .dropdown button:hover {
         background: #777;
       }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 100%;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+      .dropdown-content button {
+        background: #555;
+        color: white;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+      }
+      .dropdown-content button:hover {
+        background: #777;
+      }
+      .dropdown-content.show {
+        display: block;
+      }
       .bubble-container {
+        flex: 1;
         height: 100vh;
       }
       .bubble-container .input-wrap textarea {
@@ -67,9 +97,15 @@
 
   <body>
     <!-- Menu on the left side -->
+    <!-- Menu on the left side -->
     <div class="menu">
-      <button id="model1">Model 1</button>
-      <button id="model2">Model 2</button>
+      <div class="dropdown">
+        <button id="current-model">Select Model</button>
+        <div id="dropdown-content" class="dropdown-content">
+          <button onclick="selectModel('Model 1')">Model 1</button>
+          <button onclick="selectModel('Model 2')">Model 2</button>
+        </div>
+      </div>
     </div>
 
     <!-- container element for chat window -->
@@ -147,6 +183,19 @@
       };
 
       chatWindow.talk(convo);
+
+      const dropdownButton = document.getElementById('current-model');
+      const dropdownContent = document.getElementById('dropdown-content');
+
+      dropdownButton.addEventListener('click', () => {
+        dropdownContent.classList.toggle('show');
+      });
+
+      window.selectModel = function(model) {
+        dropdownButton.textContent = model;
+        dropdownContent.classList.remove('show');
+      };
+
     </script>
   </body>
 </html>
